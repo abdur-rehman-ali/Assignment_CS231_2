@@ -1,0 +1,156 @@
+#include<iostream>
+using namespace std;
+struct node
+{
+	int arr[][3];
+	node *n_c1;
+	node *n_c2;
+	node *n_c3;
+	node *n_c4;
+	node* p_c1;
+	node* p_c2;
+	node* p_c3;
+	node* p_c4;
+	
+};
+class tree
+{
+	private:
+		node*root;
+	public:
+		tree()
+		{
+			root=NULL;
+		}
+		void append(node*);
+		
+};
+void tree::append(node* newNode)
+{
+	if(root==NULL)
+	{
+		root=newNode;
+	}
+	else
+	{
+		
+	}
+}
+bool final_state(int arr[][3])			//chek whether final state reached or not 
+{
+	int final_state[3][3];
+	int k = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			
+			final_state[i][j] = k;
+			k++;
+		}
+
+	}
+	
+	int chek=0;
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+
+			if(arr[i][j]==final_state[i][j])
+			{	
+			chek++;
+			}
+			
+		}
+		cout << endl;
+
+	}
+	if(chek==9)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
+void possible_moves(int arr[][3])		// WILL TELL US POSSIBLE MOVES OF RESPECTIVE INPUT ARRAY
+{
+	if(arr[0][0]==0)
+	{
+		cout<<"Possible moves :"<<endl<<arr[0][1]<<endl<<arr[1][0]<<endl;
+		
+	}
+	else if(arr[0][1]==0)
+	{
+		cout<<"Possible moves :"<<endl<<arr[0][0]<<endl<<arr[0][2]<<endl<<arr[1][1]<<endl;
+		
+	}
+	else if(arr[0][2]==0)
+	{
+		cout<<"Possible moves :"<<endl<<arr[0][1]<<endl<<arr[1][2]<<endl;
+		
+	}
+	else if(arr[1][0]==0)
+	{
+		cout<<"Possible moves :"<<endl<<arr[0][0]<<endl<<arr[1][1]<<endl<<arr[2][0]<<endl;
+		
+	}
+	else if(arr[1][1]==0)
+	{
+	cout<<"Possible moves :"<<endl<<arr[0][1]<<endl<<arr[1][0]<<endl<<arr[1][2]<<endl<<arr[2][2]<<endl;
+		
+	}
+	else if(arr[1][2]==0)
+	{
+	cout<<"Possible moves :"<<endl<<arr[0][2]<<endl<<arr[1][1]<<endl<<arr[2][2]<<endl;
+		
+	}
+	else if(arr[2][0]==0)
+	{
+		cout<<"Possible moves :"<<endl<<arr[1][0]<<endl<<arr[2][1]<<endl;
+	}
+	else if(arr[2][1]==0)
+	{
+	cout<<"Possible moves :"<<endl<<arr[2][0]<<endl<<arr[1][1]<<endl<<arr[2][2]<<endl;
+		
+	}
+	else if(arr[2][2]==0)
+	{
+		cout<<"Possible moves :"<<endl<<arr[2][1]<<endl<<arr[1][2]<<endl;
+		
+	}
+	else
+	{
+		cout<<"!!!"<<endl;
+	}
+}
+void input()
+{
+			node*temp=new node;
+			cout << "ENTER 9 VALUES :" << endl;
+			for(int i=0;i<3;i++)
+			{
+				for(int j=0;j<3;j++)
+				{
+					cin>>temp->arr[i][j];
+				}
+			}
+			possible_moves(temp->arr);
+			if(final_state(temp->arr))
+			{
+				cout<<"yahoooo!!! final state reached "<<endl;
+			}
+			else
+			{
+				cout<<"Oops! need to check more"<<endl;
+			}
+			
+				
+}
+int main()
+{
+	input();
+}
